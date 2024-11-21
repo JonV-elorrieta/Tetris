@@ -11,11 +11,15 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import tetris.GlobalVariables;
+import tetris.objects.Piece;
+import tetris.objects.Type_I;
 
 import javax.swing.JTable;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -55,7 +59,7 @@ public class GamePanel extends JFrame {
 		// Initialize all cells with a white color
 		for (int row = 0; row < model.getRowCount(); row++) {
 		    for (int col = 0; col < model.getColumnCount(); col++) {
-		        model.setValueAt("J", row, col);
+		        model.setValueAt("", row, col);
 		    }
 		}
 		
@@ -69,6 +73,43 @@ public class GamePanel extends JFrame {
 		table.setBounds(72, 113, 264, 417);
 		contentPane.add(table);
 		
+		Piece piece = new Type_I(table);
+		piece.start();
+		
+		
+		/* Listeners */
+		
+		// RIGTH
+        addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                	piece.setDirRight();
+                }
+            }
+
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+					piece.setDirNeutral();
+				}
+			}
+        });
+        
+    	// LEFT
+        addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                	piece.setDirLeft();
+                }
+            }
+
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+					piece.setDirNeutral();
+				}
+			}
+        });
+
+        
 		
 	
     }

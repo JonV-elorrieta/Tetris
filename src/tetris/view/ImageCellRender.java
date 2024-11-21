@@ -19,8 +19,15 @@ public class ImageCellRender extends DefaultTableCellRenderer{
     private final ImageIcon iconJ = new ImageIcon("path_to_J_image.png");
     private final ImageIcon iconL = new ImageIcon("path_to_L_image.png");
     */
-	private final ImageIcon imgTest = new ImageIcon(getClass().getResource("/img/hola.jpg"));
-	private final ImageIcon resizedIcon = scaleImage(imgTest,20,20);
+	private final ImageIcon imgI = new ImageIcon(getClass().getResource("/img/i.png"));
+	private final ImageIcon resizedI = scaleImage(imgI,20,20);
+	
+	private final ImageIcon imgRight = new ImageIcon(getClass().getResource("/img/right.png"));
+	private final ImageIcon resizedRight = scaleImage(imgRight,20,20);
+	private final ImageIcon imgLeft = new ImageIcon(getClass().getResource("/img/left.png"));
+	private final ImageIcon resizedLeft = scaleImage(imgLeft,20,20);
+	private final ImageIcon imgNeutral = new ImageIcon(getClass().getResource("/img/down.png"));
+	private final ImageIcon resizedNeutral = scaleImage(imgNeutral,20,20);
     
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
@@ -29,34 +36,53 @@ public class ImageCellRender extends DefaultTableCellRenderer{
         label.setText(""); // Clear text
         
         // Set the appropriate icon based on the cell value
+        
         if (value != null) {
             switch (value.toString()) {
                 case "I":
-                    label.setIcon(resizedIcon);
+                    label.setIcon(resizedI);
                     break;
                 case "O":
-                    label.setIcon(resizedIcon);
+                    label.setIcon(null);
                     break;
                 case "T":
-                    label.setIcon(resizedIcon);
+                    label.setIcon(null);
                     break;
                 case "S":
-                    label.setIcon(resizedIcon);
+                    label.setIcon(null);
                     break;
                 case "Z":
-                    label.setIcon(resizedIcon);
+                    label.setIcon(null);
                     break;
                 case "J":
-                    label.setIcon(resizedIcon);
+                    label.setIcon(null);
                     break;
                 case "L":
-                    label.setIcon(resizedIcon);
+                    label.setIcon(null);
                     break;
                 default:
                     label.setIcon(null); // No icon
                     break;
             }
         }
+        
+        /*
+        switch (value.toString()) {
+			case "neutral":
+				label.setIcon(resizedNeutral);
+				break;
+			case "left":
+				label.setIcon(resizedLeft);
+				break;
+			case "right":
+				label.setIcon(resizedRight);
+				break;
+			default:
+				label.setIcon(null);
+				break;
+				
+        }
+        */
         
         label.setHorizontalAlignment(SwingConstants.CENTER); // Center align
         return label;
